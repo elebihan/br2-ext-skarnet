@@ -1,0 +1,7 @@
+# Insert menu description here
+#
+# Example:
+#
+# menu "Baz"
+# source "$BR2_EXTERNAL_SKARNET_PATH/package/xyz/Config.in"
+# endmenu
