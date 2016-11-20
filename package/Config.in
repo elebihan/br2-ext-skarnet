@@ -1,3 +1,7 @@
+menu "Interpreter languages and scripting"
+	source "$BR2_EXTERNAL_SKARNET_PATH/package/execline/Config.in"
+endmenu
+
 menu "Libraries"
 
 menu "Other"
