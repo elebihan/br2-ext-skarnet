@@ -1,0 +1,7 @@
+menu "Libraries"
+
+menu "Other"
+	source "$BR2_EXTERNAL_SKARNET_PATH/package/skalibs/Config.in"
+endmenu
+
+endmenu
