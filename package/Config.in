@@ -17,4 +17,5 @@ endmenu
 
 menu "System tools"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6/Config.in"
+	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-rc/Config.in"
 endmenu
