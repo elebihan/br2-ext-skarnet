@@ -12,6 +12,7 @@ endmenu
 
 menu "Networking applications"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-dns/Config.in"
+	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-networking/Config.in"
 endmenu
 
 menu "System tools"
