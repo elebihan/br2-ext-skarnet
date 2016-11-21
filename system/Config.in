@@ -1,0 +1,22 @@
+menu "System configuration"
+
+config BR2_INIT_S6_INIT
+	bool "Init system based on s6"
+	depends on BR2_INIT_NONE
+	depends on BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_DEVTMPFS
+	depends on BR2_USE_MMU # s6
+	select BR2_PACKAGE_S6_BR2_INIT_SKELETON
+	help
+	  Initialization system based on s6 and friends.
+
+comment "Init system based on s6 requires original init system to be \"None\""
+	depends on !BR2_INIT_NONE
+
+comment "/dev management using s6-devd requires devtmpfs only"
+	depends on !BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_DEVTMPFS
+
+comment "/dev management using devtmpfs + s6-devd"
+	depends on (BR2_INIT_S6_INIT && \
+		    BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_DEVTMPFS)
+
+endmenu
