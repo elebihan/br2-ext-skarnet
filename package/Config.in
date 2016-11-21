@@ -17,6 +17,7 @@ endmenu
 
 menu "System tools"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6/Config.in"
+	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-linux-init/Config.in"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-linux-utils/Config.in"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-portable-utils/Config.in"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-rc/Config.in"
