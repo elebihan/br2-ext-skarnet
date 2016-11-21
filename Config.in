@@ -1,2 +1,3 @@
 source "$BR2_EXTERNAL_SKARNET_PATH/system/Config.in"
 source "$BR2_EXTERNAL_SKARNET_PATH/package/Config.in"
+source "$BR2_EXTERNAL_SKARNET_PATH/package/Config.in.host"

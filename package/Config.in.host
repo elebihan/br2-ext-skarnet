@@ -1,0 +1,5 @@
+menu "Host utilities"
+
+source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-rc/Config.in.host"
+
+endmenu
