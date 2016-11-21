@@ -1,3 +1,5 @@
+menu "Target packages"
+
 menu "Interpreter languages and scripting"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/execline/Config.in"
 endmenu
@@ -22,4 +24,6 @@ menu "System tools"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-linux-utils/Config.in"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-portable-utils/Config.in"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-rc/Config.in"
+endmenu
+
 endmenu
