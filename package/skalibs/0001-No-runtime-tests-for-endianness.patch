@@ -1,60 +1,25 @@
-From dd537a560adfc7f647db726b67c4b915dcdef096 Mon Sep 17 00:00:00 2001
+From 1e6f0b094c6ce6454be572704b866d2ce0962e59 Mon Sep 17 00:00:00 2001
 From: Eric Le Bihan <eric.le.bihan.dev@free.fr>
-Date: Tue, 16 Aug 2016 00:55:08 +0200
-Subject: [PATCH] No runtime tests for type sizes nor endianness
+Date: Sun, 4 Dec 2016 19:10:40 +0100
+Subject: [PATCH 1/2] No runtime tests for endianness
 
 Replace build and execution of runtime test programs for determining
-some type sizes and the endianness of the target with compile time test
-programs.
+the endianness of the target with compile time test programs.
 
 This improves support for cross-compilation.
-
-Signed-off-by: Eric Le Bihan <eric.le.bihan.dev@free.fr>
 ---
- configure                     | 39 ++++++++++++++++++++++++++++++++-------
+ configure                     | 15 +++++++++++----
  src/sysdeps/trybigendian.c    | 16 ++++++++++++++++
  src/sysdeps/trylittleendian.c | 16 ++++++++++++++++
- 3 files changed, 64 insertions(+), 7 deletions(-)
+ 3 files changed, 43 insertions(+), 4 deletions(-)
  create mode 100644 src/sysdeps/trybigendian.c
  create mode 100644 src/sysdeps/trylittleendian.c
 
 diff --git a/configure b/configure
-index 29688da..913ef71 100755
+index 1579025..4da9c5e 100755
 --- a/configure
 +++ b/configure
-@@ -154,10 +154,28 @@ choose () {
- 
- trytypesize () {
-   echo "Checking size of $3..."
--  $CC_AUTO $CPPFLAGS_AUTO $CFLAGS_AUTO $LDFLAGS_AUTO -o trysizeof$1 src/sysdeps/trysizeof$1.c
--  type_size=$(./trysizeof$1) || fail "$0: unable to determine size of $3"
-+  r=false
-+  type_size=0
-+  while true; do
-+    cat<<EOF>trysizeof$1.c
-+#include <sys/types.h>
-+
-+int main(void)
-+{
-+  static int v = 1 / !!((sizeof($3) == $type_size));
-+  return 0;
-+}
-+EOF
-+    if $CC_AUTO $CPPFLAGS_AUTO $CFLAGS_AUTO $LDFLAGS_AUTO -o trysizeof$1 trysizeof$1.c 2>/dev/null; then
-+        r=true
-+        break
-+    fi
-+    type_size=$(expr $type_size + 1)
-+    test $type_size -le 16 || break
-+  done
-+  test $r = true || fail "$0: unable to determine size of $3"
-   type_bits=$(expr 8 \* $type_size)
--  rm -f trysizeof$1
-+  rm -f trysizeof$1 trysizeof$1.c
-   echo "sizeof$1: $type_size" >> $sysdeps/sysdeps
-   echo "#define ${package_macro_name}_SIZEOF$2 $type_size" >> $sysdeps/sysdeps.h
-   echo "#define ${package_macro_name}_$2_BITS $type_bits" >> $sysdeps/sysdeps.h
-@@ -458,13 +476,20 @@ EOF
+@@ -463,13 +463,20 @@ EOF
    fi
    exec 3>&-
  
@@ -124,5 +89,5 @@ index 0000000..eba065a
 +	return 0;
 +}
 -- 
-2.4.11
+2.5.5
 
