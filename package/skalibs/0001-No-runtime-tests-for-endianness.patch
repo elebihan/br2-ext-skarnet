@@ -1,12 +1,14 @@
 From 1e6f0b094c6ce6454be572704b866d2ce0962e59 Mon Sep 17 00:00:00 2001
 From: Eric Le Bihan <eric.le.bihan.dev@free.fr>
 Date: Sun, 4 Dec 2016 19:10:40 +0100
-Subject: [PATCH 1/2] No runtime tests for endianness
+Subject: [PATCH] No runtime tests for endianness
 
 Replace build and execution of runtime test programs for determining
 the endianness of the target with compile time test programs.
 
 This improves support for cross-compilation.
+
+Signed-off-by: Eric Le Bihan <eric.le.bihan.dev@free.fr>
 ---
  configure                     | 15 +++++++++++----
  src/sysdeps/trybigendian.c    | 16 ++++++++++++++++
