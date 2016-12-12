@@ -46,7 +46,7 @@ endef
 HOST_S6_DEPENDENCIES = host-execline
 
 HOST_S6_CONF_OPTS = \
-	--prefix=/usr \
+	--prefix=$(HOST_DIR)/usr \
 	--with-sysdeps=$(HOST_DIR)/usr/lib/skalibs/sysdeps \
 	--with-include=$(HOST_DIR)/usr/include \
 	--with-dynlib=$(HOST_DIR)/usr/lib \
@@ -59,13 +59,11 @@ define HOST_S6_CONFIGURE_CMDS
 endef
 
 define HOST_S6_BUILD_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(HOST_DIR)
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D)
 endef
 
 define HOST_S6_INSTALL_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(HOST_DIR) \
-		install-dynlib \
-		install-include
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) install-dynlib install-include
 endef
 
 $(eval $(generic-package))
