@@ -38,7 +38,7 @@ define SKALIBS_INSTALL_STAGING_CMDS
 endef
 
 HOST_SKALIBS_CONF_OPTS = \
-	--prefix=/usr \
+	--prefix=$(HOST_DIR)/usr \
 	--disable-static \
 	--enable-shared \
 	--disable-allstatic
@@ -48,11 +48,11 @@ define HOST_SKALIBS_CONFIGURE_CMDS
 endef
 
 define HOST_SKALIBS_BUILD_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(HOST_DIR)
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D)
 endef
 
 define HOST_SKALIBS_INSTALL_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(HOST_DIR) install
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) install
 endef
 
 $(eval $(generic-package))
