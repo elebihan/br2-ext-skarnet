@@ -45,7 +45,8 @@ endef
 HOST_EXECLINE_DEPENDENCIES = host-skalibs
 
 HOST_EXECLINE_CONF_OPTS = \
-	--prefix=/usr \
+	--prefix=$(HOST_DIR)/usr \
+	--shebangdir=/usr/bin \
 	--with-sysdeps=$(HOST_DIR)/usr/lib/skalibs/sysdeps \
 	--with-include=$(HOST_DIR)/usr/include \
 	--with-dynlib=$(HOST_DIR)/usr/lib \
@@ -58,11 +59,11 @@ define HOST_EXECLINE_CONFIGURE_CMDS
 endef
 
 define HOST_EXECLINE_BUILD_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(HOST_DIR)
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D)
 endef
 
 define HOST_EXECLINE_INSTALL_CMDS
-	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) DESTDIR=$(HOST_DIR) install
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) install
 endef
 
 $(eval $(generic-package))
