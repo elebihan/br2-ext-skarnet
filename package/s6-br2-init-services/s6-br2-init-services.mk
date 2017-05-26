@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-S6_BR2_INIT_SERVICES_VERSION = 0.2.0
+S6_BR2_INIT_SERVICES_VERSION = 0.2.2
 S6_BR2_INIT_SERVICES_SITE = $(call github,elebihan,s6-br2-init-services,$(S6_BR2_INIT_SERVICES_VERSION))
 S6_BR2_INIT_SERVICES_DEPENDENCIES = s6-br2-init-skeleton
 
