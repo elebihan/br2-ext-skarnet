@@ -1,5 +1,9 @@
 menu "Target packages"
 
+menu "Hardware handling"
+	source "$BR2_EXTERNAL_SKARNET_PATH/package/mdevd/Config.in"
+endmenu
+
 menu "System tools"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-br2-init-skeleton/Config.in"
 	source "$BR2_EXTERNAL_SKARNET_PATH/package/s6-br2-init-services/Config.in"
